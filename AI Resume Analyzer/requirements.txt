@@ -1,5 +1,0 @@
-streamlit
-pdfplumber
-requests
-sentence-transformers
-scikit-learn
