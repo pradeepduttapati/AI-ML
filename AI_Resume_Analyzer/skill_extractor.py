@@ -1,8 +1,7 @@
-import streamlit as st
 import requests
+import os
 
-
-API_KEY = st.secrets["NVIDIA_API_KEY"]
+API_KEY = os.getenv("NVIDIA_API_KEY")
 
 URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 
@@ -39,6 +38,6 @@ Text:
 
     skills_text = data["choices"][0]["message"]["content"]
 
-    skills = [s.strip().lower() for s in skills_text.split(",")]
+    skills = list(set([s.strip().lower() for s in skills_text.split(",")]))
 
     return skills
