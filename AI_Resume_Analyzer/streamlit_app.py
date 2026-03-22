@@ -4,7 +4,7 @@ from skill_extractor import extract_skills_with_llm
 from scoring import calculate_skill_score
 from llm_feedback import get_ai_feedback 
 
-st.title("AI Resume ATS Analyzer")
+st.title("🤖 AI Resume ATS Analyzer")
 
 uploaded_file = st.file_uploader("Upload Resume (PDF)", type=["pdf"])
 job_description = st.text_area("Paste Job Description")
