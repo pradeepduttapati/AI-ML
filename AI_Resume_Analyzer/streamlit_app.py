@@ -37,7 +37,8 @@ if st.button("Analyze Resume"):
         # Skill Match Score
         skill_score, matched, missing = calculate_skill_score(
             resume_skills,
-            jd_skills
+            jd_skills,
+            resume_text
         )
     
     
