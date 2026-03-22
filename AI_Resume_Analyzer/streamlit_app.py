@@ -24,7 +24,7 @@ job_description = st.text_area(
 )
 
 if st.button("Analyze Resume"):
-    if uploaded_file and job_description:
+    if resume_file and job_description:
         st.subheader("Analyzing Resume...")
     
         resume_text = extract_text_from_pdf(resume_file)
