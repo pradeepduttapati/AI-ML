@@ -1,5 +1,3 @@
-print("app is starting")
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 
