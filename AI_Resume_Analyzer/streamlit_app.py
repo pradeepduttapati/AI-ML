@@ -29,22 +29,20 @@ if st.button("Analyze Resume"):
         resume_skills = extract_skills_with_llm(resume_text)
         jd_skills = extract_skills_with_llm(job_description)
 
-        # Skill Score
+
         skill_score, matched, missing = calculate_skill_score(
             resume_skills,
             jd_skills
         )
 
-        # Semantic Score
         semantic_score = semantic_match_score(
             resume_text,
             job_description
         )
 
-        # Final Score
         final_score = int((skill_score * 0.3) + (semantic_score * 0.7))
 
-        # UI
+         # UI
         st.subheader("ATS Score")
         st.progress(final_score / 100)
         st.write(f"Final Score: {final_score}%")
@@ -63,5 +61,5 @@ if st.button("Analyze Resume"):
         feedback = get_ai_feedback(resume_text, job_description)
         st.write(feedback)
 
-    else:
-        st.warning("Please upload resume and enter job description")
+else:
+    st.warning("Please upload resume and enter job description")
