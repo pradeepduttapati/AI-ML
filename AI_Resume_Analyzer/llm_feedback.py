@@ -19,8 +19,7 @@ Analyze the resume based on the job description.
 Provide:
 1. Resume strengths
 2. Weaknesses
-3. Missing skills
-4. Suggestions to improve ATS score
+
 
 Resume:
 {resume_text}
