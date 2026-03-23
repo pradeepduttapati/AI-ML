@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from resume_parser import extract_text_from_pdf
 from skill_extractor import extract_skills_with_llm
-from scoring import calculate_skill_score
-from embedding_matcher import semantic_match_score
+from scoring import calculate_skill_score, semantic_match_score
 
 app = FastAPI()
 
@@ -11,6 +11,11 @@ app = FastAPI()
 class RequestData(BaseModel):
     resume_text: str
     job_description: str
+
+
+@app.get("/")
+def home():
+    return {"message": "API is running"}
 
 
 @app.post("/analyze")
@@ -29,10 +34,12 @@ def analyze(data: RequestData):
         data.job_description
     )
 
-    final_score = int((skill_score * 0.6) + (semantic_score * 0.4))
+    final_score = int((skill_score * 0.3) + (semantic_score * 0.7))
 
     return {
-        "score": final_score,
-        "matched_skills": matched,
-        "missing_skills": missing
+        "final_score": final_score,
+        "skill_score": skill_score,
+        "semantic_score": semantic_score,
+        "matched": matched,
+        "missing": missing
     }
