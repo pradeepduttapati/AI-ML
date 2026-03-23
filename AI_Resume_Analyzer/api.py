@@ -1,4 +1,6 @@
 print("app is starting")
+@app.post("/analyze")
+def analyze(data: dict):
 
 from fastapi import FastAPI
 from pydantic import BaseModel
