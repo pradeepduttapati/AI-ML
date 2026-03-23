@@ -4,9 +4,9 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 try:
-from resume_parser import extract_text_from_pdf
-from skill_extractor import extract_skills_with_llm
-from scoring import calculate_skill_score, semantic_match_score
+    from resume_parser import extract_text_from_pdf
+    from skill_extractor import extract_skills_with_llm
+    from scoring import calculate_skill_score, semantic_match_score
 except Exception as e:
     print("IMPORT ERROR:", e)
 
