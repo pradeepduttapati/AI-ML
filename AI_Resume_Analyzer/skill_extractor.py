@@ -1,6 +1,5 @@
 import requests
 import os
-import json
 
 API_KEY = os.getenv("NVIDIA_API_KEY")
 
@@ -8,32 +7,18 @@ URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 MODEL = "google/gemma-3n-e4b-it"
 
 
-def analyze_resume_with_llm(resume_text, job_description):
+def extract_skills_with_llm(text):
 
     if not API_KEY:
-        return {"error": "API key not set"}
+        print("ERROR: NVIDIA_API_KEY not set")
+        return []
 
     prompt = f"""
-You are an AI Resume Analyzer.
+Extract the technical skills from the following text.
+Return only a comma-separated list.
 
-1. Extract technical skills from the RESUME.
-2. Extract required skills from the JOB DESCRIPTION.
-3. Identify missing skills.
-4. Provide improvement feedback.
-
-Return STRICT JSON like this:
-{{
-  "resume_skills": [],
-  "jd_skills": [],
-  "missing_skills": [],
-  "feedback": ""
-}}
-
-RESUME:
-{resume_text}
-
-JOB DESCRIPTION:
-{job_description}
+Text:
+{text}
 """
 
     headers = {
@@ -43,29 +28,33 @@ JOB DESCRIPTION:
 
     payload = {
         "model": MODEL,
-        "messages": [{"role": "user", "content": prompt}],
+        "messages": [
+            {"role": "user", "content": prompt}
+        ],
         "temperature": 0.2,
-        "max_tokens": 500
+        "max_tokens": 200
     }
 
     try:
-        response = requests.post(URL, headers=headers, json=payload, timeout=15)
+        response = requests.post(
+            URL,
+            headers=headers,
+            json=payload,
+            timeout=10 
+        )
+
         data = response.json()
 
         if "choices" not in data:
-            return {"error": str(data)}
+            print("API ERROR:", data)
+            return []
 
-        content = data["choices"][0]["message"]["content"]
+        skills_text = data["choices"][0]["message"]["content"]
 
-        # Clean response
-        content = content.replace("```json", "").replace("```", "")
+        skills = list(set([s.strip().lower() for s in skills_text.split(",")]))
 
-        try:
-            result = json.loads(content)
-        except:
-            return {"error": "Invalid JSON from LLM"}
-
-        return result
+        return skills
 
     except Exception as e:
-        return {"error": str(e)}
+        print("LLM ERROR:", str(e))
+        return []
