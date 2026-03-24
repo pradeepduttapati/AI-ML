@@ -11,7 +11,9 @@ resume_file = st.file_uploader("Upload Resume (PDF)", type=["pdf"])
 job_description = st.text_area("Paste Job Description")
 
 if st.button("Analyze Resume"):
+    
     if resume_file and job_description:
+        
         with st.spinner("Analyzing..."):
             resume_text = extract_text_from_pdf(resume_file)
             payload = {
@@ -29,7 +31,7 @@ if st.button("Analyze Resume"):
                 else:
                      st.subheader("ATS Score")
                      st.progress(final_score / 100)
-                      st.write(f"Score: {data['final_score']}%")
+                     st.write(f"Score: {data['final_score']}%")
                     
                      st.subheader("Matched Skills")
                      st.write(data["matched"])
