@@ -16,10 +16,10 @@ You are an expert recruiter.
 
 Analyze the resume based on the job description.
 
-Provide:
+Briefly provide:
 1. Resume strengths
 2. Weaknesses
-
+3. Feedback
 
 Resume:
 {resume_text}
