@@ -22,7 +22,7 @@ if st.button("Analyze Resume"):
             }
 
             try:
-                response = requests.post(API_URL, json=payload, timeout=120)
+                response = requests.post(API_URL, json=payload)
                 data = response.json()
 
                 if "error" in data:
