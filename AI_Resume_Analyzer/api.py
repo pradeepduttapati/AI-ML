@@ -16,7 +16,7 @@ def home():
 
 @app.post("/analyze")
 def analyze(data: RequestData):
-
+    return {"status": "fast"}
     try:
         from skill_extractor import analyze_resume_with_llm
         from scoring import calculate_skill_score, semantic_match_score
