@@ -4,25 +4,20 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
-# Request schema
 class RequestData(BaseModel):
     resume_text: str
     job_description: str
 
 
-# Root endpoint
 @app.get("/")
 def home():
     return {"message": "API is running"}
 
 
-# Main API endpoint
 @app.post("/analyze")
 def analyze(data: RequestData):
 
     try:
-        # Lazy imports
-        from resume_parser import extract_text_from_pdf
         from skill_extractor import extract_skills_with_llm
         from scoring import calculate_skill_score, semantic_match_score
         from llm_feedback import get_ai_feedback
@@ -52,8 +47,8 @@ def analyze(data: RequestData):
             "skill_score": skill_score,
             "semantic_score": semantic_score,
             "matched": matched,
-            "missing": missing
-            "feedback": feedback    
+            "missing": missing,
+            "feedback": feedback
         }
 
     except Exception as e:
