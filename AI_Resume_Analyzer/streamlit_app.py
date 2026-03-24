@@ -29,7 +29,7 @@ if st.button("Analyze Resume"):
                 else:
                      st.subheader("ATS Score")
                      st.progress(final_score / 100)
-                     st.write(f"Score: {final_score}%")
+                      st.write(f"Score: {data['final_score']}%")
                     
                      st.subheader("Matched Skills")
                      st.write(data["matched"])
