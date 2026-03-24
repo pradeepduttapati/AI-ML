@@ -53,9 +53,7 @@ def analyze(data: RequestData):
             "semantic_score": semantic_score,
             "matched": matched,
             "missing": missing
-            "feedback": feedback
-        )
-
+            "feedback": feedback    
         }
 
     except Exception as e:
