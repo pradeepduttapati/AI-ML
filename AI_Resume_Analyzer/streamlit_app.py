@@ -59,5 +59,5 @@ if st.button("Analyze Resume"):
         st.subheader("AI Resume Feedback")
         feedback = get_ai_feedback(resume_text, job_description)
         st.write(feedback)
-else:
-    st.warning("Please enter resume and job description")
+    else:
+        st.warning("Please upload Resume and job description")
