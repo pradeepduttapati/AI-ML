@@ -2,6 +2,8 @@
 
 An AI-powered Resume Analyzer that evaluates resumes against job descriptions using **LLMs (NVIDIA Gemma)** and **semantic similarity (embeddings)** to generate an ATS (Applicant Tracking System) score.
 
+<img width="1147" height="642" alt="image" src="https://github.com/user-attachments/assets/2ec19834-0c0a-46c8-a805-b8997d0a6bb3" />
+
 ---
 
 ##  Features
