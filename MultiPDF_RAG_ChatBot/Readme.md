@@ -6,6 +6,8 @@ The application processes the PDFs, creates embeddings, retrieves relevant docum
 
 Built with **Streamlit**, **LangChain**, and **Cohere**.
 
+<img width="1227" height="570" alt="image" src="https://github.com/user-attachments/assets/32ef56a7-d827-4974-b356-ea733dbd6adb" />
+
 ---
 
 # Features
