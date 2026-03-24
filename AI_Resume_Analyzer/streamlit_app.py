@@ -7,8 +7,11 @@ st.title("🤖 AI Resume ATS Analyzer")
 
 st.write("Upload your resume text and paste job description.")
 
-# Inputs
-resume_text = st.text_area("Paste Resume Text")
+# INPUTS
+resume_file = st.file_uploader(
+    "Upload Resume (PDF)",
+    type=["pdf"]
+)
 job_description = st.text_area("Paste Job Description")
 
 # API URL
